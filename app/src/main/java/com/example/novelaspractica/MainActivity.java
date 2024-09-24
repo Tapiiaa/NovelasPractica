@@ -1,11 +1,13 @@
 package com.example.novelaspractica;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -43,13 +45,6 @@ public class MainActivity extends AppCompatActivity {
         // ViewModel para gestionar la base de datos
         novelViewModel = new ViewModelProvider(this).get(NovelViewModel.class);
 
-        novelViewModel.getAllNovels().observe(this, new Observer<List<Novel>>() {
-            @Override
-            public void onChanged(List<Novel> novels) {
-                novelAdapter.setNovels(novels);
-            }
-        });
-
         // Agregar una nueva novela
         buttonAddBook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,16 +61,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Mostrar todas las novelas
+        // Redirigir a la pantalla para mostrar todas las novelas
         buttonShowAll.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                novelViewModel.getAllNovels().observe(MainActivity.this, new Observer<List<Novel>>() {
-                    @Override
-                    public void onChanged(List<Novel> novels) {
-                        novelAdapter.setNovels(novels);
-                    }
-                });
+                Intent intent = new Intent(MainActivity.this, ShowNovelsActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -106,3 +97,4 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
+

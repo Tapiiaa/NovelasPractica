@@ -12,13 +12,18 @@
 
         <!-- Declaración de la actividad principal -->
         <activity
-            android:name="com.example.novelaspractica.MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- Declaración de la actividad para mostrar todas las novelas -->
+        <activity
+            android:name=".ShowNovelsActivity"
+            android:exported="true" />
 
     </application>
 
