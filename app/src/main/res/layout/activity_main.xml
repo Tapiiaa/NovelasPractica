@@ -40,7 +40,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
-    <!-- Botón para buscar y eliminar la novela -->
+    <!-- Campo de texto para buscar novela -->
     <EditText
         android:id="@+id/editTextSearchNovel"
         android:layout_width="0dp"
@@ -52,6 +52,7 @@
         android:layout_marginTop="16dp"
         android:padding="8dp"/>
 
+    <!-- Botón para eliminar novela -->
     <Button
         android:id="@+id/buttonDeleteBook"
         android:layout_width="wrap_content"
@@ -62,11 +63,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
+    <!-- Botón para agregar reseña -->
+    <Button
+        android:id="@+id/buttonAddReview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar Reseña"
+        app:layout_constraintTop_toBottomOf="@id/buttonDeleteBook"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- Botón para mostrar todas las reseñas -->
+    <Button
+        android:id="@+id/buttonShowReviews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mostrar Todas las Reseñas"
+        app:layout_constraintTop_toBottomOf="@id/buttonAddReview"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp" />
+
+    <!-- RecyclerView para mostrar las novelas -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/buttonDeleteBook"
+        app:layout_constraintTop_toBottomOf="@id/buttonShowReviews"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>

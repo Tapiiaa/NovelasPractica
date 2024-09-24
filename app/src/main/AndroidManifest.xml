@@ -20,9 +20,19 @@
             </intent-filter>
         </activity>
 
+        <!-- Declaración de la actividad para agregar reseñas -->
+        <activity
+            android:name=".AddReviewActivity"
+            android:exported="true" />
+
         <!-- Declaración de la actividad para mostrar todas las novelas -->
         <activity
             android:name=".ShowNovelsActivity"
+            android:exported="true" />
+
+        <!-- Declaración de la actividad para mostrar todas las reseñas -->
+        <activity
+            android:name=".ShowReviewsActivity"
             android:exported="true" />
 
     </application>

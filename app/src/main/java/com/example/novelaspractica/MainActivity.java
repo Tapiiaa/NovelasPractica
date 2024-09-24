@@ -1,6 +1,5 @@
 package com.example.novelaspractica;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -18,7 +17,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button buttonAddBook, buttonDeleteBook, buttonShowAll;
+    private Button buttonAddBook, buttonDeleteBook, buttonShowAll, buttonAddReview, buttonShowReviews;
     private EditText editTextNovelName, editTextSearchNovel;
     private RecyclerView recyclerView;
     private NovelViewModel novelViewModel;
@@ -35,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
         buttonAddBook = findViewById(R.id.buttonAddBook);
         buttonDeleteBook = findViewById(R.id.buttonDeleteBook);
         buttonShowAll = findViewById(R.id.buttonShowAll);
+        buttonAddReview = findViewById(R.id.buttonAddReview);
+        buttonShowReviews = findViewById(R.id.buttonShowReviews);
         recyclerView = findViewById(R.id.recyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -44,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
 
         // ViewModel para gestionar la base de datos
         novelViewModel = new ViewModelProvider(this).get(NovelViewModel.class);
+
+        novelViewModel.getAllNovels().observe(this, new Observer<List<Novel>>() {
+            @Override
+            public void onChanged(List<Novel> novels) {
+                novelAdapter.setNovels(novels);
+            }
+        });
 
         // Agregar una nueva novela
         buttonAddBook.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +103,25 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // Redirigir a la pantalla para agregar reseña
+        buttonAddReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddReviewActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Redirigir a la pantalla para mostrar todas las reseñas
+        buttonShowReviews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ShowReviewsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
+
 
