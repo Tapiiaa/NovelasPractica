@@ -10,9 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
 
-        <!-- Declaración de la actividad principal -->
+        <!-- Declaración de la pantalla de inicio como la actividad principal -->
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,21 +20,11 @@
             </intent-filter>
         </activity>
 
-        <!-- Declaración de la actividad para agregar reseñas -->
-        <activity
-            android:name=".AddReviewActivity"
+        <!-- Declaración de la MainActivity -->
+        <activity android:name=".MainActivity"
             android:exported="true" />
 
-        <!-- Declaración de la actividad para mostrar todas las novelas -->
-        <activity
-            android:name=".ShowNovelsActivity"
-            android:exported="true" />
-
-        <!-- Declaración de la actividad para mostrar todas las reseñas -->
-        <activity
-            android:name=".ShowReviewsActivity"
-            android:exported="true" />
+        <!-- Otras actividades declaradas aquí -->
 
     </application>
-
 </manifest>
