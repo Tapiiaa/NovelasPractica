@@ -1,4 +1,4 @@
-package com.example.novelaspractica;
+package com.example.novelaspractica.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,11 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.novelaspractica.Novel;
+import com.example.novelaspractica.viewmodel.NovelViewModel;
+import com.example.novelaspractica.R;
+import com.example.novelaspractica.adapters.NovelAdapter;
 
 import java.util.List;
 

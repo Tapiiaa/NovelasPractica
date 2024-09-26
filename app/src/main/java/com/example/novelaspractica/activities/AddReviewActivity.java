@@ -1,4 +1,4 @@
-package com.example.novelaspractica;
+package com.example.novelaspractica.activities;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
+
+import com.example.novelaspractica.R;
+import com.example.novelaspractica.Review;
+import com.example.novelaspractica.viewmodel.ReviewViewModel;
 
 public class AddReviewActivity extends AppCompatActivity {
 

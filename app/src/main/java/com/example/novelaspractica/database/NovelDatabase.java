@@ -1,4 +1,4 @@
-package com.example.novelaspractica;
+package com.example.novelaspractica.database;
 
 
 import android.content.Context;
@@ -6,6 +6,9 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+
+import com.example.novelaspractica.Novel;
+import com.example.novelaspractica.interfacesDao.NovelDao;
 
 @Database(entities = {Novel.class}, version = 1)
 public abstract class NovelDatabase extends RoomDatabase {

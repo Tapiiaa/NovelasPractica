@@ -1,4 +1,4 @@
-package com.example.novelaspractica;
+package com.example.novelaspractica.activities;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.novelaspractica.Novel;
+import com.example.novelaspractica.viewmodel.NovelViewModel;
+import com.example.novelaspractica.R;
+import com.example.novelaspractica.adapters.NovelAdapter;
 
 import java.util.List;
 

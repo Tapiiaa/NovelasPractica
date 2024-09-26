@@ -1,9 +1,13 @@
-package com.example.novelaspractica;
+package com.example.novelaspractica.repositories;
 
 
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
+
+import com.example.novelaspractica.Review;
+import com.example.novelaspractica.interfacesDao.ReviewDao;
+import com.example.novelaspractica.database.ReviewDatabase;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;

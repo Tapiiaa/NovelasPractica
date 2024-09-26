@@ -1,4 +1,4 @@
-package com.example.novelaspractica;
+package com.example.novelaspractica.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -10,6 +10,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.novelaspractica.R;
+import com.example.novelaspractica.Review;
+import com.example.novelaspractica.viewmodel.ReviewViewModel;
+import com.example.novelaspractica.adapters.ReviewAdapter;
 
 import java.util.List;
 

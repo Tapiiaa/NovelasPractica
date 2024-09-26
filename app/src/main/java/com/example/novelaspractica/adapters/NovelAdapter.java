@@ -1,4 +1,4 @@
-package com.example.novelaspractica;
+package com.example.novelaspractica.adapters;
 
 
 import android.view.LayoutInflater;
@@ -7,6 +7,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.novelaspractica.Novel;
+import com.example.novelaspractica.R;
+
 import java.util.ArrayList;
 import java.util.List;
 

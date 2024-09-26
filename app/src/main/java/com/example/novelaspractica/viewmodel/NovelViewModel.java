@@ -1,9 +1,13 @@
-package com.example.novelaspractica;
+package com.example.novelaspractica.viewmodel;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+
+import com.example.novelaspractica.Novel;
+import com.example.novelaspractica.repositories.NovelRepository;
+
 import java.util.List;
 
 public class NovelViewModel extends AndroidViewModel {

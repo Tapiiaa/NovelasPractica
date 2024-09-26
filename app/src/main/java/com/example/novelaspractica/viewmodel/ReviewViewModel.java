@@ -1,4 +1,4 @@
-package com.example.novelaspractica;
+package com.example.novelaspractica.viewmodel;
 
 
 import android.app.Application;
@@ -6,6 +6,9 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+
+import com.example.novelaspractica.Review;
+import com.example.novelaspractica.repositories.ReviewRepository;
 
 import java.util.List;
 
