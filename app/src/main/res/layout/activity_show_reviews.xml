@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ShowReviewsActivity">
+    tools:context="com.example.novelaspractica.ShowReviewsActivity">
 
     <!-- RecyclerView para mostrar todas las reseñas -->
     <androidx.recyclerview.widget.RecyclerView

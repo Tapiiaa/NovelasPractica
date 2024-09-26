@@ -10,9 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
 
-        <!-- Declaración de la pantalla de inicio como la actividad principal -->
+        <!-- Declaración de la actividad de inicio -->
         <activity
-            android:name=".LoginActivity"
+            android:name="com.example.novelaspractica.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,10 +21,23 @@
         </activity>
 
         <!-- Declaración de la MainActivity -->
-        <activity android:name=".MainActivity"
+        <activity
+            android:name="com.example.novelaspractica.MainActivity"
             android:exported="true" />
 
-        <!-- Otras actividades declaradas aquí -->
+        <!-- Declaración de otras actividades si existen -->
+        <activity
+            android:name="com.example.novelaspractica.AddReviewActivity"
+            android:exported="true" />
+
+        <activity
+            android:name="com.example.novelaspractica.ShowNovelsActivity"
+            android:exported="true" />
+
+        <activity
+            android:name="com.example.novelaspractica.ShowReviewsActivity"
+            android:exported="true" />
 
     </application>
+
 </manifest>
