@@ -13,7 +13,7 @@ public class Novel {
     private int year;
     private String synopsis;
 
-    public Novel(String title, String author, int year, String synopsis) {
+    public Novel(String title) {
         this.title = title;
         this.author = author;
         this.year = year;
