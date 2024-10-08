@@ -25,7 +25,7 @@
             android:name="com.example.novelaspractica.activities.MainActivity"
             android:exported="true" />
 
-        <!-- Declaración de otras actividades si existen -->
+        <!-- Declaración de otras actividades -->
         <activity
             android:name="com.example.novelaspractica.activities.AddReviewActivity"
             android:exported="true" />
@@ -37,9 +37,10 @@
         <activity
             android:name="com.example.novelaspractica.activities.ShowReviewsActivity"
             android:exported="true" />
-        <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-
 
     </application>
+
+    <!-- Permisos -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
 </manifest>

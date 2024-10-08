@@ -18,6 +18,6 @@ public interface NovelDao {
     @Delete
     void delete(Novel novel);
 
-    @Query("SELECT * FROM novel_table ORDER BY title ASC")
+    @Query("SELECT * FROM novel_table ORDER BY novelName ASC")
     LiveData<List<Novel>> getAllNovels();
 }

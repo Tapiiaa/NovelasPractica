@@ -14,10 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.novelaspractica.Novel;
-import com.example.novelaspractica.viewmodel.NovelViewModel;
 import com.example.novelaspractica.R;
 import com.example.novelaspractica.adapters.NovelAdapter;
-import com.example.novelaspractica.tasks.SyncDataTask;
+import com.example.novelaspractica.viewmodel.NovelViewModel;
 
 import java.util.List;
 
@@ -34,6 +33,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Obtener el nombre de usuario pasado desde LoginActivity
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("USERNAME");
+
+        // Mostrar un mensaje de bienvenida
+        if (username != null) {
+            Toast.makeText(this, "Bienvenido, " + username + "!", Toast.LENGTH_SHORT).show();
+        }
+
         // Referencias a los elementos de la interfaz
         editTextNovelName = findViewById(R.id.editTextNovelName);
         editTextSearchNovel = findViewById(R.id.editTextSearchNovel);
@@ -42,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         buttonShowAll = findViewById(R.id.buttonShowAll);
         buttonAddReview = findViewById(R.id.buttonAddReview);
         buttonShowReviews = findViewById(R.id.buttonShowReviews);
-        buttonSyncData = findViewById(R.id.buttonSyncData);  // Nueva referencia al botón de sincronización
+        buttonSyncData = findViewById(R.id.buttonSyncData);
         recyclerView = findViewById(R.id.recyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -59,23 +67,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Configurar el botón de sincronización de datos
-        buttonSyncData.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Ejecutar la tarea de sincronización en segundo plano
-                SyncDataTask syncDataTask = new SyncDataTask(MainActivity.this);
-                syncDataTask.execute();
-            }
-        });
-
         // Lógica para agregar novela
         buttonAddBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String novelName = editTextNovelName.getText().toString().trim();
                 if (!novelName.isEmpty()) {
-                    Novel novel = new Novel(novelName);
+                    Novel novel = new Novel(novelName, "Autor desconocido", 0, "Sin sinopsis");
                     novelViewModel.insert(novel);
                     Toast.makeText(MainActivity.this, "Novela agregada", Toast.LENGTH_SHORT).show();
                     editTextNovelName.setText("");
