@@ -22,7 +22,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button buttonAddBook, buttonDeleteBook, buttonShowAll, buttonAddReview, buttonShowReviews, buttonSyncData;
+    private Button buttonAddBook, buttonDeleteBook, buttonShowAll, buttonAddReview, buttonShowReviews;
     private EditText editTextNovelName, editTextSearchNovel;
     private RecyclerView recyclerView;
     private NovelViewModel novelViewModel;
@@ -33,16 +33,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Obtener el nombre de usuario pasado desde LoginActivity
+        // Obtener el nombre de usuario desde el Intent
         Intent intent = getIntent();
         String username = intent.getStringExtra("USERNAME");
 
-        // Mostrar un mensaje de bienvenida
         if (username != null) {
             Toast.makeText(this, "Bienvenido, " + username + "!", Toast.LENGTH_SHORT).show();
         }
 
-        // Referencias a los elementos de la interfaz
+        // Inicializar las vistas
         editTextNovelName = findViewById(R.id.editTextNovelName);
         editTextSearchNovel = findViewById(R.id.editTextSearchNovel);
         buttonAddBook = findViewById(R.id.buttonAddBook);
@@ -50,7 +49,6 @@ public class MainActivity extends AppCompatActivity {
         buttonShowAll = findViewById(R.id.buttonShowAll);
         buttonAddReview = findViewById(R.id.buttonAddReview);
         buttonShowReviews = findViewById(R.id.buttonShowReviews);
-        buttonSyncData = findViewById(R.id.buttonSyncData);
         recyclerView = findViewById(R.id.recyclerView);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -58,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         novelAdapter = new NovelAdapter();
         recyclerView.setAdapter(novelAdapter);
 
-        // ViewModel para gestionar los datos
+        // Configurar el ViewModel
         novelViewModel = new ViewModelProvider(this).get(NovelViewModel.class);
         novelViewModel.getAllNovels().observe(this, new Observer<List<Novel>>() {
             @Override
@@ -67,13 +65,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Lógica para agregar novela
+        // Manejo del botón para agregar una novela
         buttonAddBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String novelName = editTextNovelName.getText().toString().trim();
                 if (!novelName.isEmpty()) {
-                    Novel novel = new Novel(novelName, "Autor desconocido", 0, "Sin sinopsis");
+                    Novel novel = new Novel(novelName, "Autor Desconocido", 2024, "Sin sinopsis");
                     novelViewModel.insert(novel);
                     Toast.makeText(MainActivity.this, "Novela agregada", Toast.LENGTH_SHORT).show();
                     editTextNovelName.setText("");
@@ -83,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Lógica para eliminar novela
+        // Manejo del botón para eliminar una novela
         buttonDeleteBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                                 if (novel.getTitle().equalsIgnoreCase(searchName)) {
                                     novelViewModel.delete(novel);
                                     Toast.makeText(MainActivity.this, "Novela eliminada", Toast.LENGTH_SHORT).show();
-                                    editTextSearchNovel.setText(""); // Limpiar el campo de texto
+                                    editTextSearchNovel.setText("");
                                     return;
                                 }
                             }
@@ -109,7 +107,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Redirigir a la pantalla para agregar reseña
+        // Manejo del botón para mostrar todas las novelas
+        buttonShowAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                novelViewModel.getAllNovels().observe(MainActivity.this, new Observer<List<Novel>>() {
+                    @Override
+                    public void onChanged(List<Novel> novels) {
+                        // Actualizar el adaptador
+                        novelAdapter.setNovels(novels);
+                    }
+                });
+            }
+        });
+
+        // Redirigir a la pantalla para agregar reseñas
         buttonAddReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,6 +140,3 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
-
-
-
