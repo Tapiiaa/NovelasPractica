@@ -2,10 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.novelaspractica">
 
-    <!-- Permisos -->
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -14,9 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
 
-        <!-- Declaración de la LoginActivity como actividad principal -->
+        <!-- Actividad principal -->
         <activity
-            android:name="com.example.novelaspractica.activities.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,23 +20,23 @@
             </intent-filter>
         </activity>
 
-        <!-- Declaración de la MainActivity -->
+        <!-- MainActivity para la gestión de novelas -->
         <activity
-            android:name="com.example.novelaspractica.activities.MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true" />
 
-        <!-- Declaración de otras actividades -->
+        <!-- Actividad para agregar reseñas -->
         <activity
-            android:name="com.example.novelaspractica.activities.AddReviewActivity"
+            android:name=".activities.AddReviewActivity"
             android:exported="true" />
 
+        <!-- Actividad para mostrar reseñas -->
         <activity
-            android:name="com.example.novelaspractica.activities.ShowNovelsActivity"
+            android:name=".activities.ShowReviewsActivity"
             android:exported="true" />
 
-        <activity
-            android:name="com.example.novelaspractica.activities.ShowReviewsActivity"
-            android:exported="true" />
+
 
     </application>
+
 </manifest>

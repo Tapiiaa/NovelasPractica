@@ -10,7 +10,7 @@ import androidx.room.RoomDatabase;
 import com.example.novelaspractica.Review;
 import com.example.novelaspractica.interfacesDao.ReviewDao;
 
-@Database(entities = {Review.class}, version = 1)
+@Database(entities = {Review.class}, version = 2, exportSchema = false)
 public abstract class ReviewDatabase extends RoomDatabase {
 
     private static ReviewDatabase instance;

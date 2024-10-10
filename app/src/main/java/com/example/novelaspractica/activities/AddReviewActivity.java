@@ -1,25 +1,20 @@
 package com.example.novelaspractica.activities;
 
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RatingBar;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import com.example.novelaspractica.R;
 import com.example.novelaspractica.Review;
 import com.example.novelaspractica.viewmodel.ReviewViewModel;
 
 public class AddReviewActivity extends AppCompatActivity {
 
-    private EditText editTextReviewTitle, editTextReviewDescription;
-    private RatingBar ratingBar;
-    private Button buttonSubmitReview;
+    private EditText editTextReview;
+    private Button buttonAddReview;
     private ReviewViewModel reviewViewModel;
 
     @Override
@@ -27,31 +22,26 @@ public class AddReviewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_review);
 
-        // Inicializar elementos de la interfaz
-        editTextReviewTitle = findViewById(R.id.editTextReviewTitle);
-        editTextReviewDescription = findViewById(R.id.editTextReviewDescription);
-        ratingBar = findViewById(R.id.ratingBar);
-        buttonSubmitReview = findViewById(R.id.buttonSubmitReview);
+        // Inicializar vistas
+        editTextReview = findViewById(R.id.editTextReview);
+        buttonAddReview = findViewById(R.id.buttonAddReview);
 
         // Inicializar ViewModel
         reviewViewModel = new ViewModelProvider(this).get(ReviewViewModel.class);
 
-        // Insertar reseña cuando se presiona el botón
-        buttonSubmitReview.setOnClickListener(new View.OnClickListener() {
+        // Configurar el botón para agregar reseñas
+        buttonAddReview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String reviewTitle = editTextReviewTitle.getText().toString().trim();
-                String reviewDescription = editTextReviewDescription.getText().toString().trim();
-                float rating = ratingBar.getRating();
+                String reviewText = editTextReview.getText().toString().trim();
 
-                if (reviewTitle.isEmpty() || reviewDescription.isEmpty()) {
-                    Toast.makeText(AddReviewActivity.this, "Por favor, complete todos los campos", Toast.LENGTH_SHORT).show();
+                if (!reviewText.isEmpty()) {
+                    Review review = new Review(reviewText, 1); // Usa el ID adecuado de la novela
+                    reviewViewModel.insert(review);
+                    Toast.makeText(AddReviewActivity.this, "Reseña agregada", Toast.LENGTH_SHORT).show();
+                    editTextReview.setText("");
                 } else {
-                    // Insertar la reseña en la base de datos
-                    Review newReview = new Review(reviewTitle, reviewDescription, rating);
-                    reviewViewModel.insert(newReview);
-                    Toast.makeText(AddReviewActivity.this, "Reseña añadida", Toast.LENGTH_SHORT).show();
-                    finish(); // Finaliza la actividad actual y regresa a la pantalla anterior
+                    Toast.makeText(AddReviewActivity.this, "Ingrese una reseña", Toast.LENGTH_SHORT).show();
                 }
             }
         });

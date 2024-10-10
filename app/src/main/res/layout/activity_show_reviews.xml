@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.novelaspractica.activities.ShowReviewsActivity">
+    tools:context=".activities.ShowReviewsActivity">
 
-    <!-- RecyclerView para mostrar todas las reseñas -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewShowReviews"
         android:layout_width="0dp"
@@ -16,12 +15,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- Botón para regresar a la pantalla principal -->
     <Button
         android:id="@+id/buttonBackToMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Volver a la pantalla principal"
+        android:text="Volver"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

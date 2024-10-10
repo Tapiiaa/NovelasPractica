@@ -1,22 +1,18 @@
 package com.example.novelaspractica.adapters;
 
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RatingBar;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.novelaspractica.R;
 import com.example.novelaspractica.Review;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHolder> {
+
     private List<Review> reviews = new ArrayList<>();
 
     @NonNull
@@ -30,9 +26,7 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
     @Override
     public void onBindViewHolder(@NonNull ReviewHolder holder, int position) {
         Review currentReview = reviews.get(position);
-        holder.textViewTitle.setText(currentReview.getTitle());
-        holder.textViewDescription.setText(currentReview.getDescription());
-        holder.ratingBar.setRating(currentReview.getRating());
+        holder.textViewReview.setText(currentReview.getReviewText());
     }
 
     @Override
@@ -42,19 +36,15 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHold
 
     public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
-        notifyDataSetChanged(); // Notificar al adaptador que los datos han cambiado
+        notifyDataSetChanged();
     }
 
     class ReviewHolder extends RecyclerView.ViewHolder {
-        private TextView textViewTitle;
-        private TextView textViewDescription;
-        private RatingBar ratingBar;
+        private TextView textViewReview;
 
-        public ReviewHolder(@NonNull View itemView) {
+        public ReviewHolder(View itemView) {
             super(itemView);
-            textViewTitle = itemView.findViewById(R.id.text_view_title);
-            textViewDescription = itemView.findViewById(R.id.text_view_description);
-            ratingBar = itemView.findViewById(R.id.ratingBarReview);
+            textViewReview = itemView.findViewById(R.id.textViewReview);
         }
     }
 }
