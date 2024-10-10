@@ -5,17 +5,19 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.novelaspractica.NotificationHelper;
 import com.example.novelaspractica.R;
 import com.example.novelaspractica.Review;
-import com.example.novelaspractica.adapters.ReviewAdapter;
 import com.example.novelaspractica.SyncDataTask;
+import com.example.novelaspractica.adapters.ReviewAdapter;
 import com.example.novelaspractica.viewmodel.ReviewViewModel;
-import com.example.novelaspractica.NotificationHelper;
 
 import java.util.List;
 

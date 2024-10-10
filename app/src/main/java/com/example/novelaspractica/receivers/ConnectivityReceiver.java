@@ -1,4 +1,4 @@
-package com.example.novelaspractica;
+package com.example.novelaspractica.receivers;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
