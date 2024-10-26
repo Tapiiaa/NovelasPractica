@@ -1,107 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.novelaspractica.activities.MainActivity">
-
-    <!-- Campo de texto para ingresar el nombre de la novela -->
-    <EditText
-        android:id="@+id/editTextNovelName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Nombre de la novela"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:padding="8dp"/>
-
-    <!-- Botón para agregar la novela -->
+    tools:context=".MainActivity">
     <Button
         android:id="@+id/buttonAddBook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Agregar Novela"
-        app:layout_constraintTop_toBottomOf="@id/editTextNovelName"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Botón para mostrar todas las novelas -->
     <Button
-        android:id="@+id/buttonShowAll"
+        android:id="@+id/buttonSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mostrar Todas"
+        android:text="Configuraciones"
         app:layout_constraintTop_toBottomOf="@id/buttonAddBook"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Campo de texto para buscar novela -->
-    <EditText
-        android:id="@+id/editTextSearchNovel"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Buscar novela para eliminar"
-        app:layout_constraintTop_toBottomOf="@id/buttonShowAll"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp"
-        android:padding="8dp"/>
-
-    <!-- Botón para eliminar novela -->
     <Button
-        android:id="@+id/buttonDeleteBook"
+        android:id="@+id/buttonBackup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Eliminar Novela"
-        app:layout_constraintTop_toBottomOf="@id/editTextSearchNovel"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="Backup"
+        app:layout_constraintTop_toBottomOf="@id/buttonSettings"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Botón para agregar reseña -->
     <Button
-        android:id="@+id/buttonAddReview"
+        android:id="@+id/buttonRestore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Agregar Reseña"
-        app:layout_constraintTop_toBottomOf="@id/buttonDeleteBook"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="Restaurar"
+        app:layout_constraintTop_toBottomOf="@id/buttonBackup"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <!-- Botón para mostrar todas las reseñas -->
-    <Button
-        android:id="@+id/buttonShowReviews"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mostrar Todas las Reseñas"
-        app:layout_constraintTop_toBottomOf="@id/buttonAddReview"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
-
-    <!-- RecyclerView para mostrar las novelas -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/buttonShowReviews"
+        app:layout_constraintTop_toBottomOf="@id/buttonRestore"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
-
-    <Button
-        android:id="@+id/buttonSyncData"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sincronizar datos"
-        app:layout_constraintTop_toBottomOf="@id/buttonShowReviews"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

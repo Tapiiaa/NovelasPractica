@@ -1,0 +1,16 @@
+<resources>
+    <!-- Tema Claro -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- Tema Oscuro -->
+    <style name="DarkTheme" parent="Theme.AppCompat">
+        <item name="android:background">#121212</item> <!-- Fondo oscuro -->
+        <item name="android:textColor">#FFFFFF</item> <!-- Texto claro -->
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+</resources>

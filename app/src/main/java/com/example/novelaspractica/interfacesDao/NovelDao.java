@@ -12,12 +12,17 @@ import java.util.List;
 
 @Dao
 public interface NovelDao {
+
     @Insert
     void insert(Novel novel);
 
-    @Delete
+   @Delete
     void delete(Novel novel);
 
-    @Query("SELECT * FROM novel_table ORDER BY synopsis ASC")
+
+    @Query("DELETE FROM novel_table")
+    void deleteAll();
+
+    @Query("SELECT * FROM novel_table ORDER BY title ASC")
     LiveData<List<Novel>> getAllNovels();
 }
