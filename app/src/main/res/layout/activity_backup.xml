@@ -4,16 +4,10 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <EditText
-        android:id="@+id/editTextNovelName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Ingresa el nombre de la novela" />
-
-    <Button
-        android:id="@+id/buttonSave"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Guardar" />
-</LinearLayout>
+        android:text="Funcionalidad de Respaldo" />
 
+    <!-- Aquí puedes añadir botones o elementos para manejar el respaldo -->
+</LinearLayout>

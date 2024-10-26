@@ -1,53 +1,53 @@
 package com.example.novelaspractica.activities;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import com.example.novelaspractica.R;
+
 import com.example.novelaspractica.Novel;
+import com.example.novelaspractica.R;
+import com.example.novelaspractica.database.NovelDatabase;
+import com.example.novelaspractica.repositories.NovelRepository;
 import com.example.novelaspractica.viewmodel.NovelViewModel;
+import com.example.novelaspractica.viewmodel.NovelViewModelFactory;
 
 public class AddNovelActivity extends AppCompatActivity {
-
-    private EditText editTextTitle;
-    private EditText editTextAuthor;
+    private EditText editTextNovelName;
+    private Button buttonSave;
     private NovelViewModel novelViewModel;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_novel);  // Asegúrate de que esto coincida
+        setContentView(R.layout.activity_add_novel);
 
-        editTextTitle = findViewById(R.id.editTextTitle);
-        editTextAuthor = findViewById(R.id.editTextAuthor);
-        Button buttonSave = findViewById(R.id.buttonSave);
+        editTextNovelName = findViewById(R.id.editTextNovelName);
+        buttonSave = findViewById(R.id.buttonSave);
 
-        novelViewModel = new ViewModelProvider(this).get(NovelViewModel.class);
+        NovelRepository repository = new NovelRepository(NovelDatabase.getInstance(this).novelDao());
+        NovelViewModelFactory factory = new NovelViewModelFactory(repository);
+        novelViewModel = new ViewModelProvider(this, factory).get(NovelViewModel.class);
 
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveNovel();
+                String novelName = editTextNovelName.getText().toString().trim();
+                if (!novelName.isEmpty()) {
+                    Novel novel = new Novel(novelName, null);
+                    novelViewModel.insert(novel);
+                    Toast.makeText(AddNovelActivity.this, "Novela añadida", Toast.LENGTH_SHORT).show();
+                    finish(); // Cierra la actividad y vuelve a MainActivity
+                } else {
+                    Toast.makeText(AddNovelActivity.this, "Por favor ingresa un nombre", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-    }
-
-    private void saveNovel() {
-        String title = editTextTitle.getText().toString();
-        String author = editTextAuthor.getText().toString();
-
-        if (title.isEmpty() || author.isEmpty()) {
-            Toast.makeText(this, "Por favor, completa todos los campos.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        Novel novel = new Novel(title, author);
-        novelViewModel.insert(novel);
-        Toast.makeText(this, "Novela añadida.", Toast.LENGTH_SHORT).show();
-        finish(); // Cerrar la actividad
     }
 }

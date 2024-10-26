@@ -5,34 +5,31 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.novelaspractica.R;
-import com.example.novelaspractica.database.NovelDatabase; // Asegúrate de importar tu base de datos
+import com.example.novelaspractica.adapters.NovelAdapter;
 import com.example.novelaspractica.Novel;
 import com.example.novelaspractica.repositories.NovelRepository;
 import com.example.novelaspractica.viewmodel.NovelViewModel;
-import com.example.novelaspractica.viewmodel.NovelViewModelFactory;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private Button buttonAddBook;
-    private Button buttonSettings;
-    private Button buttonBackup;
-    private Button buttonRestore;
+
+    private Button buttonAddNovel, buttonSettings, buttonBackup, buttonRestore;
     private RecyclerView recyclerView;
     private NovelViewModel novelViewModel;
-    private SharedPreferences sharedPreferences;
+    private NovelAdapter novelAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        buttonAddBook = findViewById(R.id.buttonAddBook);
+        buttonAddNovel = findViewById(R.id.buttonAddNovel);
         buttonSettings = findViewById(R.id.buttonSettings);
         buttonBackup = findViewById(R.id.buttonBackup);
         buttonRestore = findViewById(R.id.buttonRestore);
@@ -40,28 +37,16 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
+        novelAdapter = new NovelAdapter();
+        recyclerView.setAdapter(novelAdapter);
 
-        // Obtén la instancia de la base de datos y del NovelDao
-        NovelDatabase database = NovelDatabase.getInstance(this); // Asegúrate de tener este método en tu clase NovelDatabase
-        NovelRepository repository = new NovelRepository(database.novelDao()); // Aquí pasas el NovelDao
+        novelViewModel = new ViewModelProvider(this).get(NovelViewModel.class);
 
-        // Crear la instancia del ViewModel
-        NovelViewModelFactory factory = new NovelViewModelFactory(repository);
-        novelViewModel = new ViewModelProvider(this, factory).get(NovelViewModel.class);
-
-        // Observa los cambios en la lista de novelas
-        novelViewModel.getAllNovels().observe(this, new Observer<List<Novel>>() {
-            @Override
-            public void onChanged(List<Novel> novels) {
-                // Actualiza el adapter aquí
-            }
-        });
-
-        buttonAddBook.setOnClickListener(new View.OnClickListener() {
+        // Button Click Listeners
+        buttonAddNovel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddNovelActivity.class);
-                startActivity(intent);
+                addNovel();
             }
         });
 
@@ -73,16 +58,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        sharedPreferences = getSharedPreferences("com.example.novelaspractica_preferences", MODE_PRIVATE);
-        applyUserSettings();
+        buttonBackup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, BackupActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonRestore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RestoreActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
-    private void applyUserSettings() {
-        boolean darkMode = sharedPreferences.getBoolean("dark_mode", false);
-        if (darkMode) {
-            setTheme(R.style.DarkTheme);
-        } else {
-            setTheme(R.style.AppTheme);
+    private void addNovel() {
+        // Replace with actual input
+        EditText editTextNovelName = findViewById(R.id.editTextNovelName);
+        String novelName = editTextNovelName.getText().toString().trim();
+
+        if (novelName.isEmpty()) {
+            Toast.makeText(this, "Por favor ingresa un nombre de novela", Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        Novel novel = new Novel(novelName, null);
+        novelViewModel.insert(novel);
+        Toast.makeText(this, "Novela añadida", Toast.LENGTH_SHORT).show();
+        editTextNovelName.setText(""); // Clear input field
     }
 }

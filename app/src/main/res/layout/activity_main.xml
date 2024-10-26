@@ -4,23 +4,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/editTextNovelName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Ingresa el nombre de la novela"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
     <Button
-        android:id="@+id/buttonAddBook"
+        android:id="@+id/buttonAddNovel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Agregar Novela"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editTextNovelName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
         android:id="@+id/buttonSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Configuraciones"
-        app:layout_constraintTop_toBottomOf="@id/buttonAddBook"
+        app:layout_constraintTop_toBottomOf="@id/buttonAddNovel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
         android:id="@+id/buttonBackup"
@@ -29,7 +39,7 @@
         android:text="Backup"
         app:layout_constraintTop_toBottomOf="@id/buttonSettings"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
         android:id="@+id/buttonRestore"
@@ -38,7 +48,7 @@
         android:text="Restaurar"
         app:layout_constraintTop_toBottomOf="@id/buttonBackup"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
